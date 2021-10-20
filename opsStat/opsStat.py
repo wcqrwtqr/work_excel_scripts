@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 from openpyxl import load_workbook, Workbook  # pip install openpyxl
 import os
 # from openpyxl.utils import get_column_letter, get_column_interval
@@ -17,10 +18,12 @@ To run this scrip and see how much it took use the code below
 '''
 
 package_dir = os.path.dirname(os.path.abspath(__file__))
+print(package_dir)
 
 ops_file = os.path.join(package_dir, 'opsStat.xlsx')
 lastMonth = os.path.join(package_dir, 'lastMonth.xlsx')
 currentMonth = os.path.join(package_dir, 'currentMonth.xlsx')
+print(currentMonth)
 
 wbl = load_workbook(lastMonth, read_only=True)
 wbc = load_workbook(currentMonth, read_only=True)
@@ -48,23 +51,28 @@ def copyFromCurrent(rs, re, cs, ce, ar, ac, source, destination, is_current:bool
                 c = wbl[source].cell(row, col)
             wbo[destination].cell(row+ar, col+ac).value = c.value
 
+def main():
 
 # Clear the sheet to be ready for data
-clearSheet('Consultants', 'I13:AM136')
-clearSheet('Emp.SWT', 'I13:AM136')
-clearSheet('Emp.SLS', 'I13:AM136')
-clearSheet('WTC OverHead', 'I13:AM28')
+    clearSheet('Consultants', 'I13:AM136')
+    clearSheet('Emp.SWT', 'I13:AM136')
+    clearSheet('Emp.SLS', 'I13:AM136')
+    clearSheet('WTC OverHead', 'I13:AM28')
 
-copyFromCurrent(3, 28, 30, 55, 10, -15, 'WTC', 'Emp.SWT', is_current=True)
-copyFromCurrent(3, 28, 55, 61, 10, -46, 'WTC', 'Emp.SWT', is_current=False)
-copyFromCurrent(28, 39, 30, 55, -15, -15, 'WTC', 'Emp.SLS', is_current=True)
-copyFromCurrent(28, 39, 55, 61, -15, -46, 'WTC', 'Emp.SLS', is_current=False)
-copyFromCurrent(3, 55, 30, 55, 10, -15, 'Consultnat', 'Consultants', is_current=True)
-copyFromCurrent(3, 55, 55, 61, 10, -46, 'Consultnat', 'Consultants', is_current=False)
-copyFromCurrent(14, 19, 5, 30, -1, 10, 'Timesheet', 'WTC OverHead', is_current=True)
-copyFromCurrent(14, 19, 30 , 36, -1, -21, 'Timesheet', 'WTC OverHead', is_current=False)
-wbo.save("test.xlsx")
+    copyFromCurrent(3, 28, 30, 55, 10, -15, 'WTC', 'Emp.SWT', is_current=True)
+    copyFromCurrent(3, 28, 55, 61, 10, -46, 'WTC', 'Emp.SWT', is_current=False)
+    copyFromCurrent(28, 39, 30, 55, -15, -15, 'WTC', 'Emp.SLS', is_current=True)
+    copyFromCurrent(28, 39, 55, 61, -15, -46, 'WTC', 'Emp.SLS', is_current=False)
+    copyFromCurrent(3, 55, 30, 55, 10, -15, 'Consultnat', 'Consultants', is_current=True)
+    copyFromCurrent(3, 55, 55, 61, 10, -46, 'Consultnat', 'Consultants', is_current=False)
+    copyFromCurrent(14, 19, 5, 30, -1, 10, 'Timesheet', 'WTC OverHead', is_current=True)
+    copyFromCurrent(14, 19, 30 , 36, -1, -21, 'Timesheet', 'WTC OverHead', is_current=False)
+    print('Before saving to file')
+    wbo.save("/Users/mohammedalbatati/Desktop/MonthOpsStat.xlsx")
+    print('after saving to file')
 
+if __name__ == '__main__':
+    main()
 
 '''
 Below is the old attempt to make the code the first time and it was dirty code
