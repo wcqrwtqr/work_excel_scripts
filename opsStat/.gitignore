@@ -5,5 +5,5 @@
 *.xlsx
 
 # DO-NOT ignore specific file
-!DBB/template_only.xlsx
+!template_only.xlsx
 
