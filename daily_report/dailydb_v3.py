@@ -1,16 +1,31 @@
-from pathlib import Path  # Standard Python Module
+from pathlib import Path# Standard Python Module
+import os
+import glob
+import datetime
+import json
 # import csv
 from openpyxl import load_workbook # pip install openpyxl
 
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, z):
+        if isinstance(z, datetime.datetime):
+            return (str(z))
+        else:
+            return super().default(z)
+
 # excel_file = "/Users/mohammedalbatati/Downloads/excel-script/test.xlsx"
-SOURCE_DIR = "/Users/mohammedalbatati/Downloads/excel-script"
-excel_files = list(Path(SOURCE_DIR).glob("*.xlsx"))
+package_dir = os.path.dirname(os.path.abspath(__file__))
+excel_files = glob.glob(f"{package_dir}/*.xlsx")
+# SOURCE_DIR = "/Users/mohammedalbatati/Downloads/excel-script"
+# excel_files = list(Path(SOURCE_DIR).glob("*.xlsx"))
 
 SHT_IDX=0
 
+main_dict=[]
 wellParamters = {}
 lastActivity= []
 nextActivity= []
+
 
 '''
 This function is to loop through the well data parameters in the excel sheet
@@ -62,7 +77,11 @@ for excel_file in excel_files:
         "next 24 activities": ' '.join(nextActivity),
         "file name": excel_file,
     }
-    print(finalReport)
+    main_dict.append(finalReport)
+
+with open('file.json', 'a') as f:
+    json.dump(main_dict, f, default=str)
+
 
 '''
 for excel_file in excel_files:
