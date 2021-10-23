@@ -20,17 +20,35 @@ excel_files = glob.glob(f"{package_dir}/*.xlsx")
 # excel_files = list(Path(SOURCE_DIR).glob("*.xlsx"))
 
 SHT_IDX=0
-
 main_dict=[]
 wellParamters = {}
 lastActivity= []
 nextActivity= []
 
+def cell_coordinate(string):
+    '''Get the coordiante of the row[0] and column[1]'''
+    xy = coordinate_from_string(string)
+    x = xy[1]
+    y = column_index_from_string(xy[0])
+    return {'x':x,'y':y}
 
 '''
 This function is to loop through the well data parameters in the excel sheet
 then it load it to a dictionary
 '''
+
+def get_parameters_mod(first_cell , last_cell, sht_idx):
+    first_coor = cell_coordinate(first_cell)
+    last_coor = cell_coordinate(last_cell)
+    # for row in range(start_row, end_row):
+    for row in range(first_coor['x'], last_coor['x']):
+        for col in range(first_coor['y'],first_coor['y'] +1):
+            c_title = wb[wb.sheetnames[sht_idx]].cell(row, col)
+            c_value = wb[wb.sheetnames[sht_idx]].cell(row, col+5)
+            # add values to the dictionary using the key and value
+            wellParamters[c_title.value] = c_value.value
+
+
 def get_parameters(start_row, end_row, col, sht_idx):
     for row in range(start_row, end_row):
         for col in range(col, col+1):
