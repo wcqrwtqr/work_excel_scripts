@@ -16,7 +16,6 @@ This code is the same one used with openpyxl but using xlwings which is much fas
 more faster then iterating over every single line
 Created on : 22 Oct 2021
 
-To run this scrip and see how much it took use the code below
 '''
 
 package_dir = os.path.dirname(os.path.abspath(__file__))

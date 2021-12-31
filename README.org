@@ -1,0 +1,25 @@
+#+TITLE: Python scripts for excel work automation
+
+* OpsStat automation
+
+** Work requirements:
+In my work I need to open 2 excel sheets having the time sheet for the my crew one for current month from 1st to 25th day of the month and the second workbook from 26th to months end.
+
+And inside these two workbooks I need go through 3 sheets (one for rotational staff , second for consultants and third for permanent staff) and select the working days manually and transfer these data to a third excel workbook called OpsStat.xlsx having 3 sheets.
+
+After transferring the current month and last moth data to the OpsSta.xlsx it create the needed calculation to get the number of hours each group worked over this month.
+
+1. Staff for SWT work hours
+2. Staff for SLS work hours
+3. Consultants work hours
+4. Permanent staff work hours
+
+This task occurs on a monthly basis and it takes at least 1 hour of my time to go through this process starting our cut off date 25th day of the month.
+
+This code was made using xlwings python library to open last month crew time sheet and picks up the time sheet from 26 to 31 of last month and paste it in 4 sheets from the opsStat.xlsx then it opens the current month excel and copy time sheet from 1st to 25th day and past it in the correct place on each sheet.
+
+The code is not optimized and considered dirty to me as well as repetitive and is not factored but it do the task faster than I normally do 😄
+
+I download the files from OnDrive and rename it to lastMonth and currentMonth and keep a copy of the opsstat sheet in the same directory.
+
+The code will use the same template sheet opsStat.xlsx so no need to save it or even its better to save as different file
