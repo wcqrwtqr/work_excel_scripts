@@ -67,9 +67,10 @@ ops_sht_over.range('A13:AM40').clear()
 # update the current month sheet
 ##########################
 # No 1 - Consultants details:
-con_names = current_sht_cons.range('I3:I60').options(ndim=2).value
-con_id = current_sht_cons.range('A3:A60').options(ndim=2).value
-con_curr_val = current_sht_cons.range('AD3:BB60').value
+# Choose the range of cells and change it if its nesseary
+con_names = current_sht_cons.range('I3:I50').options(ndim=2).value
+con_id = current_sht_cons.range('A3:A50').options(ndim=2).value
+con_curr_val = current_sht_cons.range('AD3:BB50').value
 
 # Moving the data to the ops stat sheet
 ops_sht_cons.range('O13').value = con_curr_val
@@ -77,12 +78,15 @@ ops_sht_cons.range('A13').value = con_id
 ops_sht_cons.range('D13').value = con_names
 
 # No 2 - SWT & SLS details:
-swt_names = current_sht_wtc.range('I3:I28').options(ndim=2).value
-swt_id = current_sht_wtc.range('A3:B28').value
-swt_curr_val = current_sht_wtc.range('AD3:BB28').value
-sls_names = current_sht_wtc.range('I29:I40').options(ndim=2).value
-sls_id = current_sht_wtc.range('A29:B40').value
-sls_curr_val = current_sht_wtc.range('AD29:BB40').value
+# Check the emplyee sheet and confirm the range of the SLS crew and SWT and if
+# there is any change then modify it
+swt_names = current_sht_wtc.range('I3:I26').options(ndim=2).value
+swt_id = current_sht_wtc.range('A3:B26').value
+swt_curr_val = current_sht_wtc.range('AD3:BB26').value
+# Update the cell range for the SLS crew
+sls_names = current_sht_wtc.range('I27:I40').options(ndim=2).value
+sls_id = current_sht_wtc.range('A27:B40').value
+sls_curr_val = current_sht_wtc.range('AD27:BB40').value
 
 ops_sht_swt.range('A13').value = swt_id
 ops_sht_swt.range('D13').value = swt_names
@@ -93,7 +97,7 @@ ops_sht_sls.range('O13').value = sls_curr_val
 
 # No 3 - overhead details:
 over_names = current_sht_over.range('B14:B20').options(ndim=2).value
-over_id = current_sht_over.range('A14:A19').options(ndim=2).value
+over_id = current_sht_over.range('A14:A20').options(ndim=2).value
 over_curr_val = current_sht_over.range('E14:AC20').value
 
 ops_sht_over.range('A13').value = over_id
@@ -104,12 +108,14 @@ ops_sht_over.range('O13').value = over_curr_val
 # update the last month sheet
 ##########################
 # No 1 - last Consultants details:
-con_last_val = last_sht_cons.range('BC3:BH60').value
+con_last_val = last_sht_cons.range('BC3:BH50').value
+con_names_lst = last_sht_cons.range('I3:I50').options(ndim=2).value
 ops_sht_cons.range('I13').value = con_last_val
+ops_sht_cons.range('E13').value = con_names_lst
 
 # No 2 - last SWT & SLS details:
-swt_last_val = last_sht_wtc.range('BC3:BH28').value
-sls_last_val = last_sht_wtc.range('BC29:BH40').value
+swt_last_val = last_sht_wtc.range('BC3:BH27').value
+sls_last_val = last_sht_wtc.range('BC28:BH40').value
 
 ops_sht_swt.range('I13').value = swt_last_val
 ops_sht_sls.range('I13').value = sls_last_val
@@ -126,7 +132,7 @@ over_ops_month = ops_sht_over.range('AU42').value
 
 # Printing the values to console
 print(f'The Month ops : {month_date}')
-print(f'The Month ops stat for SWT is: {swt_ops_month}')
-print(f'The Month ops stat for SLS is: {sls_ops_month}')
-print(f'The Month ops stat for consultants is: {con_ops_month}')
 print(f'The Month ops stat for over head is: {over_ops_month}')
+print(f'The Month ops stat for SLS is: {sls_ops_month}')
+print(f'The Month ops stat for SWT is: {swt_ops_month}')
+print(f'The Month ops stat for consultants is: {con_ops_month}')
