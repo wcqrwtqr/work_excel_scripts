@@ -68,6 +68,7 @@ ops_sht_over.range('A13:AM40').clear()
 ##########################
 # No 1 - Consultants details:
 # Choose the range of cells and change it if its nesseary
+# TODO : ensure the consultants range is covered otherwise the values will be wrong
 con_names = current_sht_cons.range('I3:I50').options(ndim=2).value
 con_id = current_sht_cons.range('A3:A50').options(ndim=2).value
 con_curr_val = current_sht_cons.range('AD3:BB50').value
@@ -78,12 +79,13 @@ ops_sht_cons.range('A13').value = con_id
 ops_sht_cons.range('D13').value = con_names
 
 # No 2 - SWT & SLS details:
-# Check the emplyee sheet and confirm the range of the SLS crew and SWT and if
+# TODO : Check the emplyee sheet and confirm the range of the SLS crew and SWT and if
 # there is any change then modify it
 swt_names = current_sht_wtc.range('I3:I26').options(ndim=2).value
 swt_id = current_sht_wtc.range('A3:B26').value
 swt_curr_val = current_sht_wtc.range('AD3:BB26').value
-# Update the cell range for the SLS crew
+
+# TODO : Update the cell range for the SLS crew
 sls_names = current_sht_wtc.range('I27:I40').options(ndim=2).value
 sls_id = current_sht_wtc.range('A27:B40').value
 sls_curr_val = current_sht_wtc.range('AD27:BB40').value
@@ -96,6 +98,7 @@ ops_sht_sls.range('D13').value = sls_names
 ops_sht_sls.range('O13').value = sls_curr_val
 
 # No 3 - overhead details:
+# TODO : Update the cell range for the SLS crew
 over_names = current_sht_over.range('B14:B20').options(ndim=2).value
 over_id = current_sht_over.range('A14:A20').options(ndim=2).value
 over_curr_val = current_sht_over.range('E14:AC20').value
