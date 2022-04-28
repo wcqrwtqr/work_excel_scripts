@@ -1,7 +1,6 @@
 #+TITLE: Python scripts for excel work automation
 
 * OpsStat automation
-
 ** Work requirements:
 In my work I need to open 2 excel sheets having the time sheet for the my crew one for current month from 1st to 25th day of the month and the second workbook from 26th to months end.
 
@@ -23,3 +22,13 @@ The code is not optimized and considered dirty to me as well as repetitive and i
 I download the files from OnDrive and rename it to lastMonth and currentMonth and keep a copy of the opsstat sheet in the same directory.
 
 The code will use the same template sheet opsStat.xlsx so no need to save it or even its better to save as different file
+* Adding images from folder to Excel sheet
+** Case for the script
+In my work I had so many images sent to me for damaged items which I added them into folders and arranged them to have each folder with the SN of the damaged item
+Later I needed to add all these images to an excel sheet where every sheet has the serial number of the damaged item and inside the sheet contains the pictures.
+** What are the frame works
+- Python
+  - Xlwings
+  - OS
+- MS Excel
+  The python script called "Read images and load it to excel.py" was created to automate the loading of images from the corresponding folder and load it to the correct sheet named on the same folder
